@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ilhomjon</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container my-5">
+      <div class="d-flex justify-content-between">
+        <h1 class="h2">Gilos.uz/smartphones</h1>
+        <button
+          class="btn btn-primary px-4"
+          data-bs-toggle="modal"
+          data-bs-target="#addProductModal"
+        >
+          <span class="me-2">Add product</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="row mt-5">
+        <div class="col-3">
+          <h2 class="h4 mb-4">Filter</h2>
+          <form action="#">
+            <div class="mb-3">
+              <label for="search" class="form-label">Search</label>
+              <input
+                type="search"
+                class="form-control"
+                id="search"
+                placeholder="Falonchi"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price</label>
+              <div class="row">
+                <div class="col-6">
+                  <input
+                    id="lowestPrice"
+                    type="number"
+                    class="form-control"
+                    id="from"
+                    min="0"
+                    placeholder="From"
+                  />
+                </div>
+                <div class="col-6">
+                  <input
+                    id="highestPrice"
+                    type="number"
+                    class="form-control"
+                    id="to"
+                    min="0"
+                    placeholder="To"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="manufacturer" class="form-label">Manufacturer</label>
+              <select class="form-select" id="manufacturer">
+                <option value="0">All</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="sortby" class="form-label">Sort by</label>
+              <select class="form-select" id="sortby">
+                <option value="1">Name</option>
+                <option value="2">Price: to lowest</option>
+                <option value="3">Price: to highest</option>
+              </select>
+            </div>
+            <button id="submitBtn" class="btn btn-primary d-block w-100 py-2">
+              Filter
+            </button>
+          </form>
+        </div>
+        <section class="col-9">
+          <div class="d-flex justify-content-between align-items-baseline">
+            <h2 class="h4 mb-4">Products list</h2>
+            <p>Count: <span id="product-count">0</span></p>
+          </div>
+          <ul id="product-list" class="row list-unstyled g-3"></ul>
+        </section>
+      </div>
+    </div>
+    <div class="modal fade" id="addProductModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add product</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="modal-form">
+              <div class="mb-3">
+                <label for="product-title" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="product-title"
+                  placeholder="Falon telefon"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Narxi</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  placeholder="12400000"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="product-manufacturer" class="form-label"
+                  >Manufacturer</label
+                >
+                <select class="form-select" id="product-manufacturer">
+                  <option selected disabled value="0">
+                    Select a manufacturer
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="benefits" class="form-label">Benefits</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="benefits"
+                  placeholder="8gb, 128gb"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary d-block w-100 p-2"
+                id="modal-btn"
+              >
+                Add product
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="edit-parrot-modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit parrot</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-parrot-form">
+              <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Img URL</label>
+                <input type="text" class="form-control" name="img" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Price ($)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="price"
+                  min="0"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Birth date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="birthDate"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Width and Height</label>
+                <div class="row">
+                  <div class="col-6">
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="width"
+                      min="0"
+                      placeholder="Width"
+                      required
+                    />
+                  </div>
+                  <div class="col-6">
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="height"
+                      min="0"
+                      placeholder="Height"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Features</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="features"
+                  placeholder="Beautiful,Tame,Can speak"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100 p-2">
+                Save changes
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="deleteModalBody"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              id="deleteClose"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-danger" id="deleteConfirm">
+              Confirm Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
